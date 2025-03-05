@@ -1,80 +1,67 @@
-import React, { useState } from 'react';
-import HeroImage from '../assets/hero-image.png';
+import React from "react";
+import { motion } from "framer-motion";
+import HeroImage from "../assets/hero-image.png";
 
 const Hero = () => {
-  const [showModal, setShowModal] = useState(false);
-
-  const toggleModal = () => {
-    setShowModal(!showModal);
-  };
-
   return (
-    <div className="relative bg-gradient-to-br from-[#0F172A] to-[#1E293B] text-[#F8FAFC] text-center py-20">
+    <section className="relative bg-gradient-to-br from-[#0F172A] via-[#1E2535] to-[#1E293B] text-[#F8FAFC] py-24 font-[Montserrat] overflow-hidden" id="hero">
       {/* Floating Blur Effect */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-purple-600 opacity-30 blur-[120px]"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500 opacity-30 blur-[120px]"></div>
-
-      {/* Profile Image */}
-      <div className="relative">
+      <div className="absolute top-0 left-0 w-96 h-96 bg-purple-600 opacity-40 blur-[150px]"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500 opacity-40 blur-[150px]"></div>
+      
+      <div className="container mx-auto px-8 md:px-16 lg:px-32 flex flex-col items-center text-center relative z-10">
+        {/* Profile Image */}
         <img
           src={HeroImage}
           alt="Profile"
           className="mx-auto mb-6 w-48 h-48 rounded-full object-cover border-4 border-[#3B82F6] shadow-lg transform transition-transform duration-300 hover:scale-110"
         />
-      </div>
-
-      {/* Text Content */}
-      <h1 className="text-5xl font-bold">
-        I'm{" "}
-        <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3B82F6] to-[#A855F7]">
-          Gopinath
-        </span>
-        , UI/UX Designer
-      </h1>
-      <p className="mt-4 text-lg text-gray-300">
-        I create seamless and visually stunning digital experiences.
-      </p>
-
-      {/* Call to Actions */}
-      <div className="mt-8 flex justify-center space-x-6">
-        <button className="bg-gradient-to-r from-[#3B82F6] to-[#A855F7] px-6 py-3 text-lg font-semibold rounded-full shadow-md transform transition-all duration-300 hover:scale-110 hover:shadow-xl">
-          Contact Me
-        </button>
-        <button
-          onClick={toggleModal}
-          className="relative px-6 py-3 text-lg font-semibold rounded-full border border-[#3B82F6] text-[#3B82F6] transition duration-300 hover:bg-[#3B82F6] hover:text-white"
-        >
-          View Resume
-        </button>
-      </div>
-
-      {/* Resume Modal */}
-      {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="relative bg-[#1E293B] text-white p-6 rounded-lg w-3/4 max-w-4xl shadow-lg">
-            {/* Close Button */}
-            <button
-              onClick={toggleModal}
-              className="absolute top-4 right-4 text-gray-400 text-2xl hover:text-white"
-            >
-              &times;
-            </button>
-
-            {/* Modal Title */}
-            <h2 className="text-2xl font-bold mb-4">My Resume</h2>
-
-            {/* Resume PDF */}
-            <iframe
-              src="/Gopinath Resume.pdf"
-              width="100%"
-              height="600px"
-              title="Resume"
-              className="border rounded-lg"
-            />
-          </div>
+        
+        <h1 className="text-6xl font-extrabold mb-8">
+          <span className="text-white">I'm </span>
+          <span className="text-[#A78BFA]">Gopinath</span>
+          <span className="text-white">, UI/UX Designer</span>
+        </h1>
+        <p className="text-xl text-gray-300 mb-12">
+          I am a passionate UI/UX Designer & Developer creating modern and engaging digital experiences.
+        </p>
+        
+        {/* Buttons */}
+        <div className="flex space-x-6">
+          <motion.a
+            href="#projects"
+            className="px-6 py-3 text-lg font-bold text-white border-2 border-[#A78BFA] rounded-lg shadow-md transition-all relative overflow-hidden bg-transparent"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            whileHover={{ scale: 1.1, boxShadow: "0px 0px 20px #A78BFA", backgroundColor: "rgba(167, 139, 250, 0.2)" }}
+            whileTap={{ scale: 0.9, boxShadow: "0px 0px 30px #A78BFA" }}
+            onClick={(e) => {
+              e.preventDefault();
+              document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
+            View Projects
+          </motion.a>
+          
+          <motion.a
+            href="#contact"
+            className="px-6 py-3 text-lg font-bold text-white border-2 border-[#A78BFA] rounded-lg shadow-md transition-all relative overflow-hidden bg-transparent"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            whileHover={{ scale: 1.1, boxShadow: "0px 0px 20px #A78BFA", backgroundColor: "rgba(167, 139, 250, 0.2)" }}
+            whileTap={{ scale: 0.9, boxShadow: "0px 0px 30px #A78BFA" }}
+            onClick={(e) => {
+              e.preventDefault();
+              document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
+            Contact Me
+          </motion.a>
         </div>
-      )}
-    </div>
+      </div>
+    </section>
   );
 };
 
